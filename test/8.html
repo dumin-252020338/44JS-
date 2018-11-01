@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas{
+            border:1px solid blueviolet;
+        }
+    
+    </style>
+</head>
+<body>
+    <canvas id='canvas' width="500" height='500'></canvas>
+    <img src="1.gif" alt="灯泡" id='img'>
+</body>
+<script>
+    let canvas = document.getElementById('canvas'),
+        ctx = canvas.getContext('2d');
+
+        // ctx.fillStyle = 'red'
+        //线性渐变
+        // let gradient = ctx.createLinearGradient(0,0,170,0)
+        // gradient.addColorStop(0.1,"white")
+        // gradient.addColorStop(0.5,"red")
+        // gradient.addColorStop(0.9,"black")
+        // ctx.fillStyle = gradient
+        // ctx.fillRect (20,20,300,100)
+        
+        //平铺
+        // document.onclick = function (){
+        //     console.log('1')
+        //     let canvas = document.getElementById('canvas');
+        //     let ctx = canvas.getContext('2d');
+
+        //     // ctx.clearRect(0,0,500,500)
+
+        //     let img = document.getElementById('img')
+        //     let repeat = ctx.createPattern(img,'repeat-y')
+
+        //     ctx.rect(0,100,250,250)
+        //     ctx.fillStyle = repeat
+        //     ctx.fill()
+        // }
+
+        //放射性/圆形渐变
+        // let canvas = document.getElementById('canvas')
+        //     ctx = canvas.getContext('2d')
+
+        let grd = ctx.createRadialGradient(200,200,20,300,300,20);
+            ctx.strokeStyle='pink';
+            // grd.addColorStop(0,'red')
+            // grd.addColorStop(1,'white')
+            // ctx.fillStyle = grd;
+            // ctx.fillRect (200,200,200,200)
+            ctx.strokeRect(20, 20, 150, 100);
+            console.log();
+            DataCue
+            CanvasRenderingContext2D
+            console.log('')
+            
+            
+</script>
+</html>

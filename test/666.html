@@ -1,0 +1,26 @@
+// 2s 之后返回双倍的值
+<script>    
+    function fn(num) {
+        console.log(1)
+        return new Promise((resolve, reject) => {
+            console.log(2)
+            setTimeout(() => {
+                console.log(3)
+                resolve(2 * num)
+            }, 2000);
+        } )
+    }
+    async function testResult() {
+        console.log(4)
+        let result = await fn(30);
+        console.log(result);
+    }
+    testResult()
+
+    async function testResult() {
+        let first = await fn(30);
+        let second = await fn(50);
+        let third = await fn(30);
+        console.log(first + second + third);
+    }
+</script>

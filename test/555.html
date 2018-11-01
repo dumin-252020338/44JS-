@@ -1,0 +1,33 @@
+var canvas = document.getElementById('my'), ctx = canvas.getContext('2d'), r =10;   
+  　　setInterval(function(){   
+  　　　　ctx.clearRect(0,0,400,400);   
+  　　　　ctx.save();   
+ 　　　　 ctx.translate(200,200);   
+  　　　　var grad = ctx.createRadialGradient(0,0,0,0,0,r+20);   
+ 　　　　 grad.addColorStop(0.2,'white');   
+ 　　　　 grad.addColorStop(0.7,'yellow');   
+　　　   grad.addColorStop(0.8,'orange');   
+ 　　　　 ctx.beginPath();   
+　　　　  ctx.fillStyle = grad;   
+　　　　  ctx.arc(0,0,r,0,Math.PI*2,true);   
+　　　　  ctx.fill();   
+　　　　var ci =90, pi = Math.PI / ci, x2 =0, y2 =0, x3 =0, y3 =0;   
+ 　　　　 x1 =100;   
+  　　　　y1 =0;   
+  　　　　ctx.beginPath();   
+  　　　　for(var i = ci *2; i >0; i--){   
+  　　　　　　ctx.rotate(pi);   
+  　　　　　　ctx.moveTo(r,0);   
+  　　　　　　y2 = r * Math.sin(pi);   
+  　　　　　　x2 = r * Math.cos(pi);   
+  
+  　　　　　　x3 = (r - x2) /2+ x2 +10+ Math.random() *20;   
+  　　　　　　y3 = y2 /2;   
+  
+  　　　　　　ctx.lineTo(x3,y3);   
+  　　　　　　ctx.lineTo(x2,y2);   
+  　　　　}   
+  　　　　ctx.fill();   
+  　　　　ctx.restore();   
+  　　　　r <=100&& (r +=2);   
+ 　　},100);   

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css"> 
+    body{
+        font-size:70%;
+        font-family:verdana,helvetica,arial,sans-serif;
+    }
+    div{
+        float:left;
+        width:199px;
+        height:99px;
+        border:1px solid #c3c3c3;
+
+    }
+</style>
+</head>
+<body style="margin:0px;">
+    <p>把鼠标悬停在下面的矩形上可以看到坐标：</p>
+    <div id="coordiv"></div>
+    <br />
+    <br />
+    <br />
+    <div id="xycoordinates"></div>
+</body>
+
+<script type="text/javascript"> 
+    let xycoordinates =document.getElementById('xycoordinates')
+    let coordiv =document.getElementById('coordiv')
+
+    coordiv.onmousemove = function (e){
+        let x=e.clientX;
+        let y=e.clientY;
+        xycoordinates.innerHTML="Coordinates: (" + x + "," + y + ")";
+    }
+    
+    coordiv.onmouseout = function (){
+        xycoordinates.innerHTML="";
+    }
+</script>
+</html>
