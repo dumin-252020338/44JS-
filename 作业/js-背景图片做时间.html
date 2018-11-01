@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        #box{
+            width: 500px;
+            height: 100px;
+            margin: 50px auto;
+        }
+        li{
+            float: left;
+            margin:0 2px;
+            width: 40px;
+            height: 61px;
+        }
+        .sym{
+            width: 17px;
+            background:url("img/d-1.png");
+        }
+        .num{
+            background:url("img/0-1.png");
+        }
+        .img1{
+            background:url("img/10-1.png");
+        }
+        .img2{
+            background:url("img/2-1.png");
+        }
+        .img3{
+            background:url("img/3-1.png");
+        }
+        .img4{
+            background:url("img/4-1.png");
+        }
+        .img5{
+            background:url("img/5-1.png");
+        }
+        .img6{
+            background:url("img/6-1.png");
+        }
+        .img7{
+            background:url("img/7-1.png");
+        }
+        .img8{
+            background:url("img/8-1.png");
+        }
+        .img9{
+            background:url("img/9-1.png");
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li class="num img"></li>
+            <li class="num img"></li>
+            <li class="sym"></li>
+            <li class="num img"></li>
+            <li class="num img"></li>
+            <li class="sym"></li>
+            <li class="num img"></li>
+            <li class="num img"></li>
+        </ul>
+    </div>
+    <script>
+        let imgs = document.getElementsByClassName("num");
+            // imgList = document.getElementsByClassName("img");
+        // console.log(imgs)
+        // console.log(imgList)
+        // console.log(imgList[1])
+        // console.log(imgList.length)
+        run();
+
+        function run () {
+            let date = new Date()
+            hh = time(date.getHours());
+            mm = time(date.getMinutes());
+            ss = time(date.getSeconds());
+            str = hh + mm + ss;
+            // console.log(str.length)
+            for (var i = 0, len = str.length; i < len; i++) {
+                imgs[i].className = "num img" + str[i];
+            }
+        }
+
+        setInterval(run ,1000)
+
+        document.onclick = function(){
+            clearInterval(1)
+        }
+
+        function time( n ) {
+            return n < 10 ? "0" + n : n + "";
+        }
+
+    </script>
+</body>
+</html>

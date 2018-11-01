@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        div{
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        input{
+            width: 150px;
+            height: 30px;
+            font-size: 16px;
+        }
+        button{
+            width: 60px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background-color: #eee;
+            font-size: 16px;
+        }
+        p{
+            padding: 10px;
+        }
+        span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="搜索内容" value="">
+        <button>搜索</button>
+        <input type="text" placeholder="替换内容" value="">
+        <button>替换</button>
+        <p>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp张家界是湖南省辖地级市，原名大庸市，辖2个市辖区（永定区、武陵源区）、2个县（慈利县、桑植县）。位于湖南西北部，澧水中上游，属武陵山区腹地。 [1]  张家界因旅游建市，是中国最重要的旅游城市之一，是湘鄂渝黔革命根据地的发源地和中心区域。<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1982年9月，张家界国家森林公园成为中国第一个国家森林公园。<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1988年8月，张家界武陵源风景名胜区被列入国家重点风景名胜区；1992年，由张家界国家森林公园等三大景区构成的武陵源风景名胜区被联合国教科文组织列入《世界自然遗产名录》；2004年2月，被列入全球首批《世界地质公园》；2007年，被列入中国首批国家5A级旅游景区。 [2]  2017年，被授予“国家森林城市”荣誉称号。 [3]
+        </p>
+    </div>
+
+    <script>
+        let input = document.getElementsByTagName("input"),
+            btn = document.getElementsByTagName("button"),
+            p = document.getElementsByTagName("p"),
+            pcon = p[0].innerHTML;
+        //查找按钮
+        btn[0].onclick = function () {
+            let inputcon = input[0].value;
+            let exist= pcon.search(inputcon);
+
+            if(exist !== -1){
+                let newcon = pcon.split(inputcon);
+                let str1 = newcon.join("<span>"+inputcon+"</span>");
+                p[0].innerHTML = str1;
+            }else{
+                alert("找不到相关内容");
+            }
+        }
+        //替换按钮
+        btn[1].onclick = function () {
+            let inputcon = input[0].value;
+            let repcon = input[1].value;
+            let newcon = pcon.split(inputcon);
+            let str2 = newcon.join("<span>"+repcon+"</span>");
+            p[0].innerHTML = str2;
+        }
+    </script>
+</body>
+</html>

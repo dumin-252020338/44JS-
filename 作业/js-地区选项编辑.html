@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        #wrap{
+            width: 300px;
+            height: 400px;
+            margin: 50px auto;
+            background-color:palegoldenrod;
+            
+        }
+        
+        .box{
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+        }
+        p{
+            color:red;
+        }
+        li{
+            float: left;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .newCon{
+            float: left;
+        }
+        .newCon li{
+            padding: 3px;
+            border: 1px solid;
+            color: rgb(163, 75, 75)
+        }
+        .rCon{
+            width: 300px;
+            height: 200px;
+        }
+        .rCon li{
+            padding: 5px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="box">
+                <p>热门目的地：</p>
+                <ul class="con">
+                    <li>马来西亚</li>
+                    <li>泰国</li>
+                    <li>三亚</li>
+                    <li>新西兰</li>
+                    <li>云南</li>
+                </ul>
+                <ul class='newCon'>
+                    <!-- <li>
+                        马来西亚 |
+                        <span>×</span>
+                    </li>
+                    <li>
+                        泰国 |
+                        <span>×</span>
+                    </li>
+                    <li>
+                        三亚 |
+                        <span>×</span>
+                    </li>
+                    <li>
+                        新西兰 |
+                        <span>×</span>
+                    </li>
+                    <li>
+                        云南 |
+                        <span>×</span>
+                    </li> -->
+                </ul>
+        </div>
+        <div class="rCon">
+            <ul>
+                <!-- <li>马来西亚</li> -->
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        let liList = document.getElementsByTagName('li'),
+            ul = document.getElementsByClassName('newCon')[0],
+            rConUl = document.querySelectorAll(".rCon ul")[0],
+            liArr = ['马来西亚','泰国','三亚','新西兰','云南'];
+
+            for(let i=0, len=liList.length; i<len; i++){
+                liList.idx = i;
+                liList[i].on_off = true;
+
+                liList[i].onclick = function(){
+                    if(this.on_off){
+
+                        let that = this;
+                        let li = document.createElement("li"),
+                            rConLi = document.createElement("li"),
+                            span = document.createElement("span");
+
+                            li.innerHTML = liArr[i] +"|";
+                            rConLi.innerHTML = liArr[i];
+                            span.innerHTML = "×";
+                            
+                            li.appendChild(span)
+                            ul.appendChild(li)
+
+                            rConUl.appendChild(rConLi)
+
+                            span.onclick = function(){
+                                ul.removeChild(li);
+                                rConUl.removeChild(rConLi);
+                                that.on_off = true
+                            }
+
+                        
+                        }
+                        this.on_off = false;
+                    }
+
+
+            }
+                
+            
+    </script>
+</body>
+</html>
