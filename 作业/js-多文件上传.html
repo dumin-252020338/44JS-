@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>44js-意愿</title>
+    <style>
+        body{
+            background-color:rgb(207, 204, 204);
+        }
+        #content{
+            position: relative;
+            display: flex;
+            width:1000px;
+            height: 300px;
+            margin: 2px auto;
+            background-color: #fff;
+            justify-content: space-around;
+            align-items:center;
+        }
+        h1{
+            position: absolute;
+            top:-25px;
+            left:400px;
+        }
+        #left{
+            width:300px;
+            height: 200px;
+            background-color:rgb(240, 240, 240);
+        }
+        #right{
+            width:600px;
+            height: 200px;
+            background-color:rgb(207, 204, 204);
+            text-align: center;
+            line-height: 200px;
+            cursor: pointer;
+            opacity: 0.3;
+        }
+        a{
+            text-decoration: none
+        }
+        .a-upload {
+            display: inline-block;
+            position: relative;
+            top:170px;
+            width:300px;
+            height: 30px;
+            color: rgb(255, 255, 255);
+            background:rgb(79, 79, 190);
+            border-radius: 4px;
+            line-height: 30px;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+            *zoom: 1
+        }
+        .a-upload  input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer
+        }
+        .a-upload:hover , #btn:hover{
+            color: #444;
+            background: skyblue;
+            border-color: #ccc;
+        }
+        #last{
+            position: absolute;
+            top:250px;
+            left:800px;
+        }
+        .again{
+            position: absolute;
+            top:0px;
+            left:-50px;
+            width:100px;
+            height: 30px;
+        }
+        #btn{
+            position: absolute;
+            top:0px;
+            left:75px;
+            width:100px;
+            height: 30px;
+            color: rgb(255, 255, 255);
+            background:rgb(79, 79, 190);
+            border-radius: 4px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #view{
+            width: 1000px;
+            margin: 1px auto;
+        }
+        #view p, #view ul{
+            margin: 0;
+        }
+        #view ul{
+            display: inline-block;
+            width:100%;
+            padding:0px;
+            background-color: white;
+        }
+        #view ul li{
+            position: relative;
+            float: left;
+            list-style-type: none;
+            height: 100px;
+            width: auto;
+            margin: 2px;
+        }
+        #view ul li p{
+            position: absolute;
+            top:0px;
+            width:100%;
+            opacity: 0;
+        }
+        #view ul li:hover p{
+            opacity: 1;
+            color:#fff;
+            background-color: rgba(39, 84, 168, .5);
+        }
+        #view ul li p div{
+            /* display:inline-block;  */
+            width:40px; 
+            height:20px; 
+            background-color:blue;
+            color:#fff;
+            float:right;
+            cursor:pointer; 
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id='content'>
+        <h1>图片拖拽上传</h1>
+        <div id='left'>
+            <a href="javascript:;" class="a-upload">
+                <input multiple type="file" name='img' accept="image/png,image/jpg,image/jpeg " >点击这里上传文件
+            </a>
+        </div>
+        <div id="right">
+            请将图片拖拽至此
+        </div>
+        <div id='last'>
+            <a href="javascript:;" class="a-upload again">
+                <input multiple type="file" name='img' accept="image/png,image/jpg,image/jpeg ">继续上传
+            </a>
+            <div id='btn'>开始上传</div>
+        </div>
+    </div>
+    <div id='view'>
+        <p>已选中
+            <span>0</span>张图片，共
+            <span>0</span>KB
+        </p>
+        <ul></ul>
+    </div>
+</body>
+    <script>
+        let input = document.querySelectorAll('input'),
+            right = document.getElementById('right'),
+            ul = document.getElementsByTagName('ul'),
+            view = document.getElementById('view'),
+            arr = [],
+            arrSize = [],
+            arrName = [];
+        // console.log(input)
+        input.forEach((item, index) => {
+            item.onchange = function(){
+                if(this.value){
+                    if(this.files.length){
+                        for(let i=0,len=this.files.length; i<len; i++){
+                            let files = this.files[i]
+                            arr.push(files);
+                            arrSize.push(files.size);
+                            arrName.push(files.name);
+                            readerFlies(files)
+                            idx()
+                        }
+                    }
+                }
+            }
+        });
+
+        //拖拽上传
+        right.ondragenter = function(){
+            this.innerHTML = '请释放鼠标';
+        }
+        right.ondragover = function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('1')
+        }
+        right.ondrop = function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            this.innerText = '请将图片拖拽至此';
+
+            if(e.dataTransfer.files.length){
+                for(let i=0,len=e.dataTransfer.files.length; i<len; i++){
+                    let files = e.dataTransfer.files[i];
+                    if(/image/.test(files.type)){
+                        arr.push(files);
+                        arrSize.push(files.size);
+                        arrName.push(files.name);
+                        // console.log(files.name)
+                        readerFlies(files)
+                        idx()
+                    }
+                }
+            }
+        }
+        
+        //封装图片预览函数
+        function readerFlies(files){
+            let blob = new Blob([files])
+            let url = window.URL.createObjectURL(blob)
+            let li = document.createElement('li');
+            // console.log(files)
+                li.innerHTML = `<img src="${url}" widht='100%' height="100%"/><p></p>`;
+                ul[0].appendChild(li)
+                // console.log(arr[1])
+        }
+        
+        //统计图片数量和大小
+        idx()
+        function idx(){
+            //生成每张图片
+            let p = document.querySelectorAll('#view ul li p')
+            // console.log(p)
+            p.forEach((item, index)=>{
+                item.innerHTML = `${arrName[index]}<div></div>`;
+            })
+            //图片总数量
+            let span = document.getElementsByTagName('span');
+                span[0].innerHTML = `${arr.length}`            
+            if(arrSize[0]){//计算图片总大小
+                span[1].innerHTML = `${(eval(arrSize.join('+'))/1024).toFixed(1)}`;
+            }else{//没有图片的话，大小为0
+                span[1].innerHTML = '0';
+            }
+                del()
+        }   
+
+        //删除按钮
+        function del(){
+            let div = view.querySelectorAll('div');
+            let allLi = ul[0].querySelectorAll('li');
+            allLi.forEach((item, index) => {
+                item.children[1].children[0].innerHTML = "删除";
+                item.children[1].children[0].addEventListener ('click', function(){
+                    arr.splice(index,1);
+                    arrSize.splice(index,1);
+                    ul[0].removeChild(allLi[index])
+                    idx()
+                })
+            })
+        }
+
+        
+    </script>
+</html>
