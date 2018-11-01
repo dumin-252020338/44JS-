@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        body{
+            background-color: #ddd;}
+        ul{
+            width: 400px;
+            margin: 50px auto;
+            padding:10px;
+            background-color: #fff;
+            border-radius:10px;
+            box-sizing: border-box;
+        }
+        li{
+            height: 50px;
+            border-bottom: 1px dashed #361f34;
+            line-height: 50px;
+        }
+        span.con{
+            display: inline-block;
+            width: 300px;
+            height: 48px;
+            border:none;
+            font-size: 20px;
+        }
+        input.btn{
+            width: 40px;
+            height: 30px;
+            border: 1px solid;
+            font-size:16px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <span class="con">123</span>
+            <input type="button" value="修改"  class=" btn">
+        </li>
+        <li>
+            <span class="con">123</span>
+            <input type="button" value="修改"  class=" btn">
+        </li>
+        <li>
+            <span class="con">123</span>
+            <input type="button" value="修改" class=" btn">
+        </li>
+    </ul>
+    <script>
+        let con = document.getElementsByClassName("con");
+        let btn = document.getElementsByClassName("btn");
+
+        for(var i=0,len=btn.length;i<len;i++) {
+            btn[i].change = false;
+            btn[i].num = i;
+            btn[i].onclick = function () {
+                if (this.change) {
+                   this.value = "修改";
+                    con[this.num].setAttribute('contenteditable',false);
+                } else {
+                    this.value = "确认";
+                    con[this.num].setAttribute('contenteditable',true);
+                }
+                this.change = !this.change;
+            }
+        }
+    </script>
+</body>
+</html>

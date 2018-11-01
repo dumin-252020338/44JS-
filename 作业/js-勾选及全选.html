@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="意愿">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        div{
+            width: 200px;
+            margin: 50px auto;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        li{
+            width: 100%;
+            height: 30px;
+            border-bottom:1px solid;
+            /*background:url(img/ck.png) no-repeat 5px 5px/20px 20px;*/
+            text-indent: 40px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        span{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background:url(img/ck.png) no-repeat 5px 5px/20px 20px;
+            vertical-align: middle;
+        }
+        span.bgc{
+            background:url(img/cked.jpg) no-repeat 5px 5px/20px 20px;
+        }
+        p{
+            text-indent: 40px;
+            line-height: 50px;
+            background:url(img/ck.png) no-repeat 15px 15px/20px 20px;
+            cursor: pointer;
+        }
+        p.bgc{
+            background:url(img/cked.jpg) no-repeat 15px 15px/20px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul id="list">
+            <li><span></span>Number01</li>
+            <li><span></span>Number02</li>
+            <li><span></span>Number03</li>
+            <li><span></span>Number04</li>
+            <li><span></span>Number05</li>
+            <li><span></span>Number06</li>
+        </ul>
+        <p id="btn">
+            全选
+        </p>
+    </div>
+    <script>
+        let ali = document.getElementsByTagName('li'),
+            aspan = document.getElementsByTagName('span'),
+            btn = document.getElementById('btn'),
+            onNum = 0;
+        //单个选中
+        for(let i=0,len=ali.length;i<len;i++){
+            ali[i].num=i;
+            ali[i].change=true;
+            ali[i].onclick=function () {
+                if(this.change) {
+                    onNum++;
+                    aspan[this.num].classList = 'bgc';
+                    // this.change=false;
+                }else {
+                    onNum--;
+                    aspan[this.num].classList = '';
+                    // this.change=true;
+                }
+                this.change = !this.change;
+                //所有单选选中，全选就选中。
+                if(onNum === len){
+                    btn.classList = "bgc";
+                    btn.btnchange = false
+                }else {
+                    btn.classList ="";
+                    btn.btnchange = true;
+                }
+            }
+        }
+
+        //全选按钮
+        btn.btnchange = true;//存全选开关
+        btn.onclick=function (){
+            if (btn.btnchange){
+                for (let i = 0,len = ali.length; i < len; i++){
+                    ali[i].change=false;
+                    aspan[i].classList = 'bgc';
+                    btn.className = "bgc";
+                    btn.btnchange = false;
+                }
+            }else{
+                for (let i = 0,len = ali.length; i < len; i++) {
+                    ali[i].change=true;
+                    aspan[i].classList = '';
+                    btn.className = "";
+                    btn.btnchange = true;
+                }
+            }
+        }
+
+        // btn.onclick=function (){
+        //     if (btn.btnchange){
+        //         for (var i = 0,len = ali.length; i < len; i++){
+        //             //判断单选图片是否是对勾
+        //             if(aimg[i].src !== "img/cked.jpg"){
+        //                 aimg[i].src = "img/cked.jpg";
+        //                 btn.className = "bgc";
+        //             }
+        //             btn.btnchange = false;
+        //         }
+        //     }else {
+        //         for (var i = 0, len = ali.length; i < len; i++) {
+        //             aimg[i].src = "img/ck.png";
+        //             btn.className = "";
+        //             btn.btnchange = true;
+        //         }
+        //     }
+        // }
+        //     }else{
+        //         for (var i = 0, len = ali.length; i < len; i++) {
+        //             aimg[i].src = "img/ck.png";
+        //             btn.className = "";
+        //             btn.btnchange = true;
+        //             }
+        //     }
+        // }
+        // }
+
+        // onNum
+        // btn.onclick=function (){
+        //     for (var i = 0,len = ali.length; i < len; i++) {
+        //         ali[i].change = true;
+        //         if (btn.btnchange) {
+        //                 btn.className = "bgc";
+        //                 aimg[i].src = "img/cked.jpg";
+        //                 ali[i].change = false;
+        //             }else {
+        //                 btn.className = "";
+        //                 aimg[i].src = "img/ck.png";
+        //                 ali[i].change = true;
+        //             }
+                    // btn.className = "bgc";
+                    // btn.btnchange = false;
+                // } else {
+                //     aimg[i].src = "img/ck.png";
+                //     btn.className = "img/cked.jpg";
+                //     btn.btnchange = true;
+                // }
+
+        // for (var i = 0,len = ali.length; i < len; i++){
+        //     ali[i].change = true;
+        //     btn.onclick=function () {
+        //         if (btn.btnchange) {
+        //             if (ali[i].change) {
+        //                 aimg[i].src = "";
+        //                 btn.className = "bgc";
+        //                 ali[i].change = false;
+        //             }
+        //         }else {
+        //             aimg[i].src = "img/cked.jpg";
+        //             btn.className = "bgc";
+        //             ali[i].change = true;
+        //             }
+        //     }
+        // }
+
+        //     }else{
+        //         for (var i = 0; i < len; i++) {
+        //             aimg[i].src = "img/ck.png";
+        //             btn.className = "";
+        //             btn.btnchange = true;
+        //         }
+        //     }
+        // }
+
+        // for (var i = 0; i < len; i++){
+        //     aimg[i].num = i;
+        //     btn.onclick=function (){
+        //         if(btn.btnchange){
+        //             aimg[i].src = "img/cked.jpg";
+        //             btn.className = "bgc";
+        //             btn.btnchange = false;
+        //         }else{
+        //             aimg[i].src = "img/ck.png";
+        //             btn.className = "";
+        //             btn.btnchange = true;
+        //         }
+        //     }
+        // }
+
+                // btn.onbtn = false;
+                // btn.num = i;
+                // if (btn.onbtn) {
+                //     aimg[btn.num].src = "img/cked.jpg";
+                //     btn.className = "bgc";
+                //     btn.onbtn = false;
+                // } else {
+                //     aimg[btn.num].src = "img/ck.png";
+                //     btn.className = "";
+                //     btn.onbtn = true;
+                // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        #wrap{
+            width: 200px;
+            /*height: 200px;*/
+            margin: 30px auto;
+            border: 1px solid #41ff28;
+        }
+        li{
+            overflow: hidden;
+            width: 100%;
+            height: 50px;
+            border-bottom: 2px solid #ffd176;
+        }
+        h2{
+            width: 100%;
+            height: 50px;
+            border: 1px solid #6251ff;
+            background-color: #ffb798;
+            text-align: center;
+            line-height: 50px;
+            color: #6ffffb;
+            cursor: pointer;
+        }
+        p{
+            width: 100%;
+            border-bottom: 1px solid #ff6e76;
+            line-height: 30px;
+            text-indent: 20px;
+        }
+        .active{
+            height: auto;
+        }
+        .hbgc{
+            background-color: red;
+        }
+    </style>
+</head>
+        <div id="wrap">
+            <ul>
+                <li>
+                    <h2>同事</h2>
+                    <p>小刘</p>
+                    <p>小小</p>
+                    <p>二狗</p>
+                </li>
+                <li>
+                    <h2>同学</h2>
+                    <p>狗蛋</p>
+                    <p>毛毛</p>
+                    <p>阿丁</p>
+                    <p>棍棍</p>
+                </li>
+                <li>
+                    <h2>亲戚</h2>
+                    <p>大舅</p>
+                    <p>小舅</p>
+                    <p>大姨</p>
+                    <p>外婆</p>
+                    <p>外公</p>
+                </li>
+            </ul>
+        </div>
+        <script>
+            var lis=document.getElementsByTagName('li');
+            var h2s=document.getElementsByTagName('h2');
+            var ps=document.getElementsByTagName('p');
+            index = null;
+            for( i = 0 ,len = h2s.length; i < len;i++ ) {
+                h2s[i].index = i;
+                h2s[i].onclick = function () {
+                    if(index === null){
+                        index= this.index;
+                        lis[index].className='active';
+                    }else {
+                        lis[index].className='';
+                        index=this.index;
+                        lis[index].className='active';
+                    }
+                }
+            }
+            for(i=0,lenps=ps.length;i<lenps;i++){
+                ps[i].onmouseenter = function(){
+                   this.className='hbgc';
+                };
+                ps[i].onmouseleave= function(){
+                    this.className='';
+                }
+            }
+        </script>
+</body>
