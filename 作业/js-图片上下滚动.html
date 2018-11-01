@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{
+            list-style: none;
+        }
+        #box{
+            position: relative;
+            width: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        p{
+            position: relative;
+            width: 300px;
+            height: 30px;
+            background-color: brown;
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .con{
+            position: relative;
+            top:0px;
+            height: 450px;
+        }
+        img{
+            width: 300px;
+            height: 150px;
+        }
+        .bottom{
+            position: absolute;
+            top:450px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p class='top'>∧</p>
+        <div class='con'>
+            <img src="img/1.jpg" alt="">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+            <img src="img/5.jpg" alt="">
+            <img src="img/6.jpg" alt="">
+            <img src="img/7.jpg" alt="">
+            <img src="img/8.jpg" alt="">
+        </div>
+        <p class='bottom'>∨</p>
+    </div>
+
+    <script>
+        let pTop =document.getElementsByTagName("p")[0];
+        let pBottom =document.getElementsByTagName("p")[1];
+        let imgList = document.getElementsByTagName("img");
+        let con =  document.getElementsByClassName("con")[0];
+
+            idx = 0;
+
+            pTop.onmousedown = function(){
+                int = setInterval(function(){
+                    idx -= 5;
+                    idx = Math.max(idx,-808)
+                    con.style.top =idx + "px";
+                },50)
+            }
+            document.onmouseup = function(){
+                clearInterval(int)
+            }
+
+            pBottom.onmousedown = function(){
+                int = setInterval(function(){
+                    idx += 5;
+                    idx = Math.min(idx,0)
+                    con.style.top =idx + "px";
+                },50)
+            }
+            // document.onmouseup = function(){
+            //     clearInterval(int2)
+            // }
+
+    </script>
+</body>
+</html>

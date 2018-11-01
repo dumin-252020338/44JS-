@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>自由2</title>
+	<style>
+	*{margin:0;padding:0;}
+	li{list-style:none;}
+	a{text-decoration:none;}
+	div{
+		display:inline-block;
+		position:relative;
+		width:250px;
+		height:300px;
+		margin:20px 0 0 20px;
+		border:1px solid red;
+		background:url('img/bg.jpg') no-repeat center/cover;
+	}
+	div.box-1:hover img{
+		display:inline-block;
+	}
+	img{
+		width:162px;
+		height:216px;
+		border-radius:10px;
+		position:absolute;
+	}
+	img.pt-1,.pt-2,.pt-3{
+		display:none;
+		z-index:0;
+		top:50%;
+		left:50%;
+		margin-top: -160px; 
+        margin-left: -125px;
+		transform-origin:bottom left;
+		transform:translate(0,0) rotate(0deg);
+	}
+	img:hover{
+		z-index:1;
+	}
+	img.pt-1{
+		animation:move1 1s linear forwards;
+	}
+	@keyframes move1{
+		0%{transform:translate(0,0) rotate(0deg);}
+		50%{transform:translate(0px,0px) rotate(7deg);} 
+		100%{transform:translate(0px,0px) rotate(15deg);}
+	}
+	img.pt-2{
+		animation:move2 1s linear forwards ;
+	}
+	@keyframes move2{
+		0%{transform:translate(0,0) rotate(0deg);}
+		50%{transform:translate(0px,0px) rotate(12deg);}
+		100%{transform:translate(0px,0px) rotate(25deg);}
+	}
+	img.pt-3{
+		animation:move3 1s linear forwards;
+	}
+	@keyframes move3{
+		0%{transform:translate(0,0) rotate(0deg);}
+		50%{transform:translate(0px,0px) rotate(17deg);}
+		100%{transform:translate(0px,0px) rotate(35deg);}
+	}
+	
+	</style>
+</head>
+<body>
+	<div class='box-1'>
+		<img src='img/03.jpg' class='pt-1'>
+		<img src='img/02.jpg' class='pt-2'>
+		<img src='img/01.jpg' class='pt-3'>
+	</div>
+	<div class='box-2'>
+		<img src='img/001.png' class='pt-4'>
+		<img src='img/002.png' class='pt-5'>
+		<img src='img/003.png' class='pt-6'>
+	</div>
+	<div class='box-3'>
+		<img src='img/1.jpg' class='pt-7'>
+		<img src='img/2.jpg' class='pt-8'>
+		<img src='img/3.jpg' class='pt-9'>
+	</div>
+	<div class='box-4'>
+		<img src='img/1.jpg' class='pt-10'>
+		<img src='img/2.jpg' class='pt-11'>
+		<img src='img/3.jpg' class='pt-12'>
+	</div>
+</body>
+</html>

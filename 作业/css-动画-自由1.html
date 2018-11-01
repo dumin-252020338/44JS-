@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	li{list-style:none;}
+	a{text-decoration:none;}
+	div{
+		display:table-cell;
+		width:1920px;/* 
+		height:300px; */
+		border:1px solid red;
+		background:#ddd;
+		text-align:center;
+		vertical-align: middle;
+		transition:transform 2s;
+	}
+	img{
+		width:162px;
+		height:216px;
+		border-radius:10px;
+		transform:translate(0px,0px) scale(1,1);
+		opacity:0;
+		animation:animation1 5s linear infinite alternate;
+	}
+	img:hover{
+		animation-play-state:paused;
+	}
+	div:hover{
+		transform:scale(1.5,1.5);
+	}
+	@keyframes animation1{
+		0%{transform:translate(-1000px,0px);opacity:.1;}
+		20%{transform:translate(-500px,0px);opacity:.2;}
+		30%{transform:translate(-300px,0px);opacity:.5;}
+		40%{transform:translate(-100px,0px);opacity:.7;}
+		50%{transform:translate(0px,0px);opacity:1;transform:scale(1.5,1.5);}
+		60%{transform:translate(100px,0px);opacity:.8;}
+		70%{transform:translate(300px,0px);opacity:.6;}
+		80%{transform:translate(500px,0px);opacity:.4;}
+		90%{transform:translate(800px,0px);opacity:.2;}
+		100%{transform:translate(1000px,0px);opacity:0;}
+	}
+	</style>
+</head>
+<body>
+	<div>
+		<img src='img/1.jpg'>
+		<img src='img/2.jpg'>
+		<img src='img/3.jpg'>
+	</div>
+</body>
+</html>

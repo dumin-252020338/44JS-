@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	body{
+		background:linear-gradient(to top,rgba(#fff,0.5),rgba(#000,0.5));
+	}
+	nav{
+		height:200px;
+		padding-top:50px;
+		background:url('images/bg_head.jpg') no-repeat center/cover;
+	}
+	ul{
+		position:relative;
+		width:610px;
+		height:52px;
+		margin:auto;
+		border-radius:5px;
+		background:linear-gradient(to top,#eee 20%,#fff 60%,#eee 20%);
+	}
+	li{
+		list-style:none;
+		float:left;
+	}
+	li + li{
+		border-left:1px solid #ccc;
+	}
+	a:after{
+		content:'';
+		background:radial-gradient(at center,#eee 20%,#000);
+		opacity:0;
+	}
+	a.list-1:after{
+		position:absolute;
+		top:0px;
+		left:0px;
+		width:90px;
+		height:52px;
+	}
+	a.list-2:after{
+		position:absolute;
+		top:0px;
+		left:89px;
+		width:106px;
+		height:52px;
+	}
+	a.list-3:after{
+		position:absolute;
+		top:0px;
+		left:192px;
+		width:138px;
+		height:52px;
+	}
+	a.list-4:after{
+		position:absolute;
+		top:0px;
+		left:330px;
+		width:138px;
+		height:52px;
+	}
+	a.list-5:after{
+		position:absolute;
+		top:0px;
+		right:0px;
+		width:142px;
+		height:52px;
+	}
+	li:hover a:after{
+		opacity:0.2;
+	}
+	a{
+		display:inline-block;
+		padding:0px 36px;
+		line-height:50px;
+		text-decoration:none;
+		color:#636363;
+	}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li>
+				<a href='#' class='list-1'>
+					<img src='img/home.png'>
+				</a>
+			</li>
+			<li>
+				<a href='#' class='list-2'>
+					资讯
+				</a>
+			</li>
+			<li>
+				<a href='#' class='list-3'>
+					关于我们
+				</a>
+			</li>
+			<li>
+				<a href='#' class='list-4'>
+					服务信息
+				</a>
+			</li>
+			<li>
+				<a href='#' class='list-5'>
+					联系我们
+				</a>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>

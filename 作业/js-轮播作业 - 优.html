@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        #wrap{
+            position: relative;
+            width: 640px;
+            height: 460px;
+            margin: 50px auto;
+            background-color: #91ffcd;
+            border-radius: 20px;
+        }
+        div.list-p{
+            position: relative;
+        }
+        p{
+            display:none;
+            position: absolute;
+            left:50%;
+            margin-left: -25px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .list-img{
+            position: absolute;
+            top:50px;
+        }
+        img{
+            position: relative;
+        }
+        li{
+            display: none;
+            position: absolute;
+        }
+        .active{
+            display: block;
+        }
+        .active-dot{
+            display: inline-block;
+            background-color:#f10;
+        }
+        .list-span span{
+            display: none;
+            position: absolute;
+            top:420px;
+            left:260px;
+            font-size: 30px;
+        }
+        .btn{
+            display: none;
+            position: absolute;
+            top:200px;
+            width: 50px;
+            height: 50px;
+            background-color: #b4b191;
+            font-size: 20px;
+            color: #fff2f2;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+        .right{
+            right:0px;
+        }
+        .pat{
+            position: absolute;
+            top:460px;
+            left:200px;
+            width: 100px;
+            height: 50px;
+            border: 3px solid red;
+            border-radius: 5px;
+            box-shadow: 3px 3px 2px #361f34;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .cir-btn{
+            left:320px;
+        }
+        .dot{
+            position: absolute;
+            top: 420px;
+            left: 220px;
+            width: 180px;
+            height: 30px;
+            /* border: 1px solid red; */
+            background-color:rgb(165, 162, 162);
+            opacity: 0.5;
+            text-align:center;
+            border-radius: 10px;
+            transition: all 0.8s;
+        }
+        .dot:hover{
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        span{
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            margin: 2px;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="list-p">
+            <p class="active">1/5</p>
+            <p>2/5</p>
+            <p>3/5</p>
+            <p>4/5</p>
+            <p>5/5</p>
+        </div>
+        <ul class="list-img">
+            <li class="active"><img src="img/1-1.png" alt=""></li>
+            <li><img src="img/1-2.png" alt=""></li>
+            <li><img src="img/1-3.png" alt=""></li>
+            <li><img src="img/1-4.png" alt=""></li>
+            <li><img src="img/1-5.png" alt=""></li>
+        </ul>
+        <div class="dot">
+            <span class="active-dot"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="btn right">&gt;</div>
+        <div class="btn left">&lt;</div>
+        <div class="pat nor-btn col">正常播放</div>
+        <div class="pat cir-btn">循环播放</div>
+    </div>
+    <script>
+        let wrap = document.getElementById("wrap"),
+            listp =document.getElementsByTagName('p'),
+            listimg =document.getElementsByTagName('li'),
+            listspan =document.getElementsByTagName('span'),
+            right =document.getElementsByClassName('right')[0],
+            left =document.getElementsByClassName('left')[0],
+            index = 0,
+            btn = document.getElementsByClassName('btn'),
+            norbtn =document.getElementsByClassName('nor-btn')[0],
+            cirbtn =document.getElementsByClassName('cir-btn')[0];
+            bgc = "#f55";
+        //正常播放
+        norbtn.onclick = function () {
+            norbtn.style.backgroundColor ="#f55";
+            cirbtn.style.backgroundColor ='';
+            btn[0].style.cssText = "display:inline";
+            btn[1].style.cssText = "display:inline";
+            
+            right.onclick = function () {
+                listp[index].className ='';
+                listimg[index].className ='';
+                listspan[index].className ='';
+                index++;
+                if(index > 4 ){
+                    index = 4;
+                }
+                listp[index].className ='active';
+                listimg[index].className ='active';
+                listspan[index].className ='active-dot';
+            }
+            left.onclick = function () {
+                listp[index].className ='';
+                listimg[index].className ='';
+                listspan[index].className ='';
+                index--;
+                if(index < 0 ){
+                    index = 0;
+                }
+                listp[index].className ='active';
+                listimg[index].className ='active';
+                listspan[index].className ='active-dot';
+            }
+        }
+        //循环播放
+        cirbtn.onclick = function(){
+            cirRun();
+        };
+        //点击按钮播放对应图片
+        for(let i=0, len=listspan.length; i<len; i++){
+            listspan[i].onclick = function(){
+                listspan[index].className ='';
+                listp[index].className ='';
+                listimg[index].className ='';
+                
+                index = i-1;
+
+                listspan[i].className ='active-dot';
+                listp[i].className ='active';
+                listimg[i].className ='active';
+
+                index++;
+            }
+        }
+        //打开自动轮播
+        let timer;
+        autoRun();
+        function autoRun(){
+            timer = setInterval(function(){
+                listp[index].className ='';
+                listimg[index].className ='';
+                listspan[index].className ='';
+                index++;
+                if(index > 4 ){
+                    index = 0;
+                }
+                listp[index].className ='active';
+                listimg[index].className ='active';
+                listspan[index].className ='active-dot';
+        },1000)    
+        }
+        //鼠标进入继续自动轮播
+        wrap.onmouseleave = function(){
+            autoRun(); 
+        }
+        //鼠标进入停止自动轮播
+        wrap.onmouseenter = function(){
+            clearInterval(timer)
+        }
+        function cirRun() {
+            norbtn.style.backgroundColor ='';
+            cirbtn.style.backgroundColor ="#f55";
+            btn[0].style.cssText = "display:inline";
+            btn[1].style.cssText = "display:inline";
+
+            right.onclick = function () {
+                listp[index].className ='';
+                listimg[index].className ='';
+                listspan[index].className ='';
+                index++;
+                if(index > 4 ){
+                    index = 0;
+                }
+                listp[index].className ='active';
+                listimg[index].className ='active';
+                listspan[index].className ='active-dot';
+            }
+            left.onclick = function () {
+                listp[index].className ='';
+                listimg[index].className ='';
+                listspan[index].className ='';
+                index--;
+                if(index < 0 ){
+                    index = 4;
+                }
+                listp[index].className ='active';
+                listimg[index].className ='active';
+                listspan[index].className ='active-dot';
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

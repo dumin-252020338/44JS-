@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        
+        #box{
+           width: 100%;
+           margin:10px auto;
+           text-align: center;
+           
+        }
+        input{
+            width: 100px;
+        }
+        p{
+            display: inline-block;
+        }
+        #plate{
+            position: relative;
+            width: 90%;
+            height: 500px;
+            margin:0 auto;
+            border: 1px solid;
+            overflow: hidden;
+        }
+        #plate>div{
+            position: absolute;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p>画笔大小</p>
+        <input type="text" placeholder="14" class="size">
+        <p>画笔颜色</p>
+        <input type="color" class="penColor" >
+        <p>背景颜色</p>
+        <input type="color" class="bgc" >
+        <button class="clear">清空</button>
+        <button class="back">撤回</button>
+        <button class="dontBack">反撤回</button>
+
+    </div>
+    <div id="plate">
+    </div>
+
+    <script>
+        let size = document.getElementsByClassName("size")[0],
+            penColor = document.getElementsByClassName("penColor")[0],
+            bgc = document.getElementsByClassName("bgc")[0],
+            plate = document.getElementById("plate"),
+            clear = document.getElementsByClassName("clear")[0],
+            back = document.getElementsByClassName("back")[0],
+            dontBack = document.getElementsByClassName("dontBack")[0];
+
+            inpSize = 30;
+            inpColor ="#f0c";
+            plate.style.backgroundColor = "#a9d";
+
+            plateTop = plate.offsetTop;
+            plateLeft = plate.offsetLeft;
+        
+        let arryBack = [];//存画下的数据
+            arryDontBack = [];//存反撤回的数据
+
+            //设置画笔的大小
+            size.onchange = function(){
+                inpSize = size.value;
+            }
+            //设置画笔的颜色
+            penColor.onchange = function(){
+                inpColor = penColor.value;
+            }
+            //设置背景板的颜色
+            bgc.onchange = function(){
+                plate.style.backgroundColor = bgc.value;
+            }
+            //开始画画
+            plate.onmousedown = function(e){//在画板上按钮鼠标}
+                e = e || window.event;
+                if(e.which !== 1){return}//判断是否是鼠标左键按下，左键e.which=1，中键e.which=2 右键e.which=3
+                    
+                // if (arryBack.length && arryDontBack.length) {
+    			//     arryDontBack.length = 0
+    		    // }
+                arryBack.push([])//按下鼠标左键，往arryback里放一个空数组
+
+                plate.onmousemove = function(e){//在画板上移动
+                    e = e || window.event;
+                    let div = document.createElement("div");//创建一个元素
+
+                    div.style.width = inpSize +"px";
+                    div.style.height = inpSize +"px";
+                    div.style.backgroundColor = inpColor;
+                    
+                    let divLeft = e.clientX - plateLeft - inpSize/2 ;
+                        divTop = e.clientY - plateTop - inpSize/2 ;
+                        // console.log(divLeft)
+                        // divTop = Math.max(- inpSize/2,divTop);
+                        // divTop = Math.min(divTop,e.clientY - plateTop- inpSize);
+                        // divLeft = Math.max(0,divLeft);
+                        // divLeft = Math.min(divLeft,e.clientX - plateLeft);
+                        
+                        div.style.top = divTop +"px";
+                        div.style.left = divLeft +"px";
+
+                        arryBack[arryBack.length - 1].push(div)//移动鼠标，把div放到arryback数组的最后位置
+
+                        plate.appendChild(div); 
+                }
+            }
+            document.onmouseup = function(){
+                plate.onmousemove = null;
+            }
+            //清空按钮 
+            clear.onclick = function(){
+                plate.innerHTML = "";
+                arryBack = [];
+                arryDontBack = [];
+            }
+            //撤回按钮
+            back.onclick =function(){
+                if(arryBack.length){
+                    let arryLast = arryBack.pop();//记录撤回数组的最后一个数组
+                        arryDontBack.push(arryLast);//将撤回数组的最后一个数组放入反撤回数组里
+                        for(let i=0, len= arryLast.length; i<len; i++){
+                            plate.removeChild(arryLast[i]);
+                        }
+                }
+            }
+            //反撤回按钮
+            dontBack.onclick = function(){
+                if(arryDontBack.length){
+                    let arryLast = arryDontBack.pop();//记录反撤回数组的最后一个数组
+                        arryBack.push(arryLast);//将反撤回数组的最后一个数组放入撤回数组里
+                        for(let i=0, len= arryLast.length; i<len; i++){
+                            plate.appendChild(arryLast[i])
+                        }
+                }
+            }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{
+            list-style: none;
+        }
+        #box{
+            position: relative;
+            width: 500px;
+            height: 313px;
+            /* border: 1px solid red; */
+            margin: 50px auto;
+            background-color:bisque;
+            overflow: hidden;
+        }
+        #box>div{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+        }
+    </style>
+    <script src="animation.js"></script>
+</head>
+<body>
+    <div id="box">
+          
+    </div>
+    <script>
+        let box = document.getElementById("box"),
+            div = box.getElementsByTagName("div"),
+            arr = [];//创建一个数组存数据
+
+            for (let i=0; i<100; i++){//遍历100次
+                arr.push(i);//遍历后的值放入数组内
+            }
+            // arr.sort(() => Math.random()-0.5);
+            arr.sort(function(){
+                return Math.random()-0.5;//打乱数组的顺序
+            });
+                // console.log(arr)
+            let num = 0,
+                len = arr.length;
+            fly()
+            function fly(){
+                let value = arr[num];
+                if(num <= len){
+                    let top = Math.floor(value/10) * 50;
+                    let left = (value%10) * 50;
+                    // let div = document.createElement("div");
+                    // box.appendChild(div)
+                    // div[num].style.width = "50px";
+                    // div[num].style.height = "50px";
+                    // div[num].style.position = "absolute";
+                    // div.style.background = "url(1.png); -${left}px; -${top}px;"
+                    box.innerHTML += "<div></div>";
+                    // console.log(box.innerHTML)
+                    div[num].style.background = "url(img/8.jpg)";
+                    div[num].style.backgroundPositionY = -top + "px";
+                    div[num].style.backgroundPositionX = -left + "px";
+                    // div.style.top = Math.floor(value/10) * 50 + "px";
+                    // div.style.left = (value%10) * 50 + "px";
+                   
+                    animation(div[num],{
+                        data:{
+                            top,
+                            left,
+                        }
+                    },100,function(){
+                        num ++;
+                        requestAnimationFrame(fly)
+                    })
+                } 
+            }
+            
+    </script>
+</body>
+</html>
