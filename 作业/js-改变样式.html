@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>666-44js</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			/*background-color: #fff;*/
+		}
+		div{
+			height: 200px;
+			width: 400px;
+			margin: 100px auto;
+			border:1px solid red;
+			/*background-color: #fff;*/
+			font-size:20px;
+			opacity: 1;
+    		animation:animation1 2s linear backwards;
+    		transform:rotate(0deg) translate(0px,0px); 
+		}
+		@keyframes animation1{
+			0%{opacity:0;background-color: #fff;}
+		    20%{opacity:.2;background-color: purple;}
+		    40%{opacity:.4;background-color: blue;}
+		    60%{opacity:.6;background-color: cyan;}
+		    80%{opacity:.8;background-color: green;}
+		    100%{opacity:1;background-color: red;}
+		    100%{opacity:1;background-color: red;}
+
+		}
+		.nom{
+			background-color:#fff;
+			font-size:20px;
+			transform:rotate(0deg) translate(0px,0px);
+		}
+		.active1{
+			background-color:red;
+			font-size:50px;
+			transform:rotate(90deg) translate(0px,100px);
+		}
+		.active2{
+			background-color:pink;
+			font-size:50px;
+			transform:rotate(90deg) translate(0px,-100px);
+		}
+	</style>
+</head>
+<body>
+	<div id='box1'>
+		风屿是大帅比吗？
+	</div>
+	<div id='box2'>
+		不知道。
+	</div>
+    <script type="text/javascript">
+    	let oBox1 = document.getElementById('box1'),
+    		oBox2 = document.getElementById('box2');
+    		nomc=oBox1.backgroundColor;
+    		nomf=oBox1.fontSize;
+    	// nom2.backgroundColor=oBox2.backgroundColor;
+    	oBox1.onmouseenter = function (){
+            oBox2.className ="active1";
+    	    // oBox2.style.cssText ="background-color:red;font-size:50px;transform:rotate(90deg) translate(0px,100px)";
+    		// oBox2.style.backgroundColor = "red";
+    		// oBox2.style.fontSize = "50px";
+    		// oBox2.style.transform ="rotate(90deg) translate(0px,100px)";
+    	}
+    	oBox1.onmouseleave = function (){
+            oBox2.className ="nom";
+    		// oBox2.style.backgroundColor = "#fff";
+    		// oBox2.style.fontSize = "20px";
+    		// oBox2.style.transform ="rotate(0deg) translate(0px,0px)";
+    	}
+    	oBox2.onmouseenter = function (){
+            oBox1.className ="active2";
+            // oBox1.style.cssText ="background-color:pink;font-size:50px;transform:rotate(90deg) translate(0px,-100px)";
+    		// oBox1.style.backgroundColor = "pink";
+    		// oBox1.style.fontSize = "50px";
+    		// oBox1.style.transform ="rotate(90deg) translate(0px,-100px)";
+    	}
+    	oBox2.onmouseleave = function (){
+            oBox1.className='nom';
+    		// oBox1.style.backgroundColor = "#fff";
+    		// oBox1.style.fontSize = "20px";
+    		// oBox1.style.transform ="rotate(0deg) translate(0px,0px)";
+
+    	}
+    </script>
+</body>
+</html>

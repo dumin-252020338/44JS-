@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        .box{
+        }
+        p{
+            float: left;
+            width: 200px;
+            height: 50px;
+            margin: 2px;
+            border: 1px solid;
+            line-height:50px;
+            font-size: 14px;
+            /*background-color: rgba(20, 100, 50, 0.5);*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        let box = document.getElementsByClassName('box')[0];
+            setInterval(function () {
+                let color = rgba();
+                let kuan = Math.floor(Math.random() *50 + 230);
+                box.innerHTML += "<p style= 'background: "+color+" '> "+color+" </p>"
+            },500);
+
+            function rgba () {
+                return "rgba("+Math.floor(Math.random() *226)+", "+Math.floor(Math.random() *226)+", "+Math.floor(Math.random() *226)+", "+Math.random().toFixed(1) *1 +" )"
+            }
+    </script>
+</body>
+</html>

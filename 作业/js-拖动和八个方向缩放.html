@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html ondragstart="return false">
+<head>
+	<meta charset="utf-8">
+	<title>43js-意愿</title>
+	<style>
+		*{margin:0;padding:0;}
+		#box{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100px;
+			height: 100px;
+			border: 1px solid black;
+			cursor: move;
+		}
+		#box>div{
+			position: absolute;
+			width: 20px;
+			height: 20px;
+		}
+		#box>div:hover{
+			background-color:red;
+		}
+		#leftTop{
+			left: 0;
+			top: 0;
+			cursor: se-resize;
+		}
+		#top{
+			top: 0;
+			left:50%;
+			margin-left: -5px;
+			cursor: n-resize;
+		}
+		#rightTop{
+			right: 0;
+			top: 0;
+			cursor: ne-resize;
+		}
+		#right{
+			right: 0;
+			top: 50%;
+			margin-top: -5px;
+			cursor: e-resize;
+		}
+		#rightBottom{
+			right: 0;
+			bottom: 0;
+			cursor: se-resize;
+		}
+		#bottom{
+			bottom: 0;
+			left:50%;
+			margin-left: -5px;
+			cursor: s-resize;
+		}
+		#leftBottom{
+			left: 0;
+			bottom: 0;
+			cursor: ne-resize;
+		}
+		#left{
+			left: 0;
+			top: 50%;
+			margin-top: -5px;
+			cursor: w-resize;
+		}
+	</style>
+</head>
+<body>
+    <div id="box">
+    	<div id="leftTop"></div>
+    	<div id="top"></div>
+    	<div id="rightTop"></div>
+    	<div id="right"></div>
+    	<div id="rightBottom"></div>
+    	<div id="bottom"></div>
+    	<div id="leftBottom"></div>
+    	<div id="left"></div>
+    </div>
+    <script>
+		let left = document.getElementById('left');
+		let box = document.getElementById('box');
+
+		box.onmousedown = function(e){
+			e = e || window.event;
+			let that = e.target || e.srcElement,
+				downX = e.clientX,//获取鼠标按下后的X坐标值
+				downY = e.clientY,//获取鼠标按下后的Y坐标值
+				downLeft = box.offsetLeft,//获取鼠标按下后元素到文档左边的距离
+    			downTop = box.offsetTop,//获取鼠标按下后元素到文档顶部的距离
+				downWidth = box.clientWidth,
+				downHeight = box.clientHeight;
+
+			document.onmousemove = function(e){
+				e = e || window.event;
+
+				let changeX = e.clientX - downX,//获取鼠标移动后X方向的差值
+					changeY = e.clientY - downY;//获取鼠标移动后Y方向的差值	
+					
+				switch(that.id){
+					case 'box':
+						box.style.top = downTop + changeY + "px";
+						box.style.left = downLeft + changeX + "px";
+						break;
+					case 'right':
+						console.log(e.clientX)
+						console.log(e.clientY)
+						changeX = Math.max(changeX, -(downWidth-100));
+						box.style.width = downWidth + changeX + "px";
+						break;
+					case 'left':
+						changeX = Math.min(changeX, (downWidth-100));
+						box.style.width = downWidth - changeX + "px";
+						box.style.left = downLeft +  changeX + "px";
+						break;
+					case 'top':
+						changeY = Math.min(changeY,downHeight-100)
+						box.style.height = downHeight - changeY + "px";
+						box.style.top = downTop + changeY + "px";
+						break;
+					case 'bottom':
+						changeY = Math.max(changeY,-(downHeight-100))
+						box.style.height = downHeight + changeY + "px";
+						break;
+					case 'rightTop':
+						changeX = Math.max(changeX, -(downWidth-100));
+						changeY = Math.min(changeY,downHeight-100);
+						box.style.height = downHeight - changeY + "px";
+						box.style.width = downWidth + changeX + "px";
+						box.style.top = downTop + changeY + "px";
+						break;
+					case 'leftTop':
+						changeX = Math.min(changeX, (downWidth-100));
+						changeY = Math.min(changeY,downHeight-100);
+						box.style.height = downHeight - changeY + "px";
+						box.style.width = downWidth - changeX + "px";
+						box.style.top = downTop + changeY + "px";
+						box.style.left = downLeft +  changeX + "px";
+						break;
+					case 'rightBottom':
+						changeX = Math.max(changeX, -(downWidth-100));
+						changeY = Math.max(changeY,-(downHeight-100))
+						box.style.height = downHeight + changeY + "px";
+						box.style.width = downWidth + changeX + "px";
+						break;
+					case 'leftBottom':
+						changeX = Math.min(changeX, (downWidth-100));
+						changeY = Math.max(changeY,-(downHeight-100))
+						box.style.height = downHeight + changeY + "px";
+						box.style.width = downWidth - changeX + "px";
+						box.style.left = downLeft + changeX + "px";
+						break;def
+					//无default情况
+				}
+			}
+		}
+		document.onmouseup = function(){
+			this.onmousemove = null;//清除移动事件
+		}
+
+
+
+    </script>
+</body>
+</html>

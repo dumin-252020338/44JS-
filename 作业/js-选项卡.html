@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>666-44期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #wrap{
+            position: relative;
+            width: 500px;
+
+            margin: 50px auto;
+        }
+        .list{
+            width: 50px;
+            line-height: 30px;
+            text-align: center;
+            color: #223e33;
+        }
+        .list li{
+            background-color: #3bbb4c;
+            border-bottom: 1px solid #f60;
+            cursor: pointer;
+        }
+        .list li.activeBgc{
+            background-color: red;
+        }
+        img{
+            display: none;
+            /*让图片隐藏*/
+            position: absolute;
+            top: 0px;
+            left: 50px;
+            width: 400px;
+            height: 300px;
+            border: 1px solid red;
+        }
+        img.on{
+            display: inline-block;
+            /*让图片显示*/
+        }
+        .con div{
+            display:none;
+            /*让每个的列表隐藏*/
+        }
+        .con div.active{
+            display: inline-block;
+            /*让每个的列表显示*/
+        }
+        .botton{
+            /*display: none;*/
+        }
+        .botton div{
+            display: none;
+            position: absolute;
+            top: 270px;
+            left: 320px;
+        }
+        .botton div.btn{
+            display: inline-block;
+        }
+        span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #b4b4b4;
+            text-align: center;
+            cursor: pointer;
+        }
+        .bgcColor{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="list">
+            <ul>
+                <li class="activeBgc">数码</li>
+                <li>美食</li>
+                <li>美女</li>
+            </ul>
+        </div>
+        <div class="con">
+            <div class="listOne active">
+                <ul>
+                    <li>
+                        <img src="images/shop1.jpg" alt="" class="on">
+                    </li>
+                    <li>
+                        <img src="images/shop2.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/shop3.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/shop4.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/shop5.jpg" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="listTow">
+                <ul>
+                    <li>
+                        <img src="images/xh_img1.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/xh_img2.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/xh_img3.jpg" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="listThree">
+                <ul>
+                    <li>
+                        <img src="images/1.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/2.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/3.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/4.jpg" alt="">
+                    </li>
+                </ul>
+                <div>
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                </div>
+            </div>
+        </div>
+        <div class="botton">
+            <div>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+            <div class="btn">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+            </div>
+            <div>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        let list = document.querySelectorAll(".list li"),
+            divList = document.querySelectorAll(".con div"),
+            spanOne = document.querySelectorAll(".listOne span"),
+            imgOne = document.querySelectorAll(".listOne img"),
+            btn = document.getElementsByClassName('btn');
+            list.num = 0;
+
+        for(let i=0, len=list.length; i<len; i++){
+            list[i].onclick = function () {
+                    // console.log(spanOne[i])
+                    list[list.num].classList.remove('activeBgc');//去除上一个对象的类名；
+                    imgOne[list.num].classList.remove('on');
+
+                    list.num = i;
+
+                    // console.log(i);
+                    // console.log(list[list.num]);
+                    console.log(spanOne[i]);
+
+                    list[i].classList.add('activeBgc');
+                    spanOne[0].classList.add ('bgcColor','on');
+                    btn[0].classList.add('btn');
+                    imgOne[i].classList.add('on');
+                    divList[i].classList.add('active');
+                    // console.log(imgOne[0]);
+                    // list[num].classList.add('bgcColor');
+                    // spanOne[0].classList.add ('bgcColor');
+
+                    // btn[0].classList.add('zIndex3');
+                    // for(let j=0,len=spanOne.length; j<len;j++){
+                    //     spanOne[j].onclick = function () {
+                    //         spanOne[j].index = j;
+                    //         this.classList.add ('bgcColor','zIndex3');
+                    //
+                    //         imgOne[this.index].classList.add('zIndex2');
+                    //     }
+                    // }
+                }
+        }
+    </script>
+</body>
+</html>
