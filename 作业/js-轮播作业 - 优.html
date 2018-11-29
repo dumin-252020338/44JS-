@@ -74,7 +74,7 @@
             left:200px;
             width: 100px;
             height: 50px;
-            border: 3px solid red;
+            /* border: 3px solid red; */
             border-radius: 5px;
             box-shadow: 3px 3px 2px #361f34;
             text-align: center;
@@ -152,36 +152,42 @@
             norbtn =document.getElementsByClassName('nor-btn')[0],
             cirbtn =document.getElementsByClassName('cir-btn')[0];
             bgc = "#f55";
+
+        //样式消失
+        function none(){
+            listp[index].className ='';
+            listimg[index].className ='';
+            listspan[index].className ='';
+        }
+        //样式出现
+        function active(){
+            listp[index].className ='active';
+            listimg[index].className ='active';
+            listspan[index].className ='active-dot';
+        }  
         //正常播放
         norbtn.onclick = function () {
             norbtn.style.backgroundColor ="#f55";
             cirbtn.style.backgroundColor ='';
             btn[0].style.cssText = "display:inline";
             btn[1].style.cssText = "display:inline";
-            
+             //右按钮
             right.onclick = function () {
-                listp[index].className ='';
-                listimg[index].className ='';
-                listspan[index].className ='';
+                none()
                 index++;
                 if(index > 4 ){
                     index = 4;
                 }
-                listp[index].className ='active';
-                listimg[index].className ='active';
-                listspan[index].className ='active-dot';
+            active()
             }
+            //左按钮
             left.onclick = function () {
-                listp[index].className ='';
-                listimg[index].className ='';
-                listspan[index].className ='';
+                none()
                 index--;
                 if(index < 0 ){
                     index = 0;
                 }
-                listp[index].className ='active';
-                listimg[index].className ='active';
-                listspan[index].className ='active-dot';
+                active()
             }
         }
         //循环播放
@@ -191,9 +197,7 @@
         //点击按钮播放对应图片
         for(let i=0, len=listspan.length; i<len; i++){
             listspan[i].onclick = function(){
-                listspan[index].className ='';
-                listp[index].className ='';
-                listimg[index].className ='';
+                none()
                 
                 index = i-1;
 
@@ -209,19 +213,15 @@
         autoRun();
         function autoRun(){
             timer = setInterval(function(){
-                listp[index].className ='';
-                listimg[index].className ='';
-                listspan[index].className ='';
+                none()
                 index++;
                 if(index > 4 ){
                     index = 0;
                 }
-                listp[index].className ='active';
-                listimg[index].className ='active';
-                listspan[index].className ='active-dot';
+                active()
         },1000)    
         }
-        //鼠标进入继续自动轮播
+        //鼠标离开继续自动轮播
         wrap.onmouseleave = function(){
             autoRun(); 
         }
@@ -234,35 +234,25 @@
             cirbtn.style.backgroundColor ="#f55";
             btn[0].style.cssText = "display:inline";
             btn[1].style.cssText = "display:inline";
-
+            //右按钮
             right.onclick = function () {
-                listp[index].className ='';
-                listimg[index].className ='';
-                listspan[index].className ='';
+                none()
                 index++;
                 if(index > 4 ){
                     index = 0;
                 }
-                listp[index].className ='active';
-                listimg[index].className ='active';
-                listspan[index].className ='active-dot';
+                active()
             }
+            //左按钮
             left.onclick = function () {
-                listp[index].className ='';
-                listimg[index].className ='';
-                listspan[index].className ='';
+                none()
                 index--;
                 if(index < 0 ){
                     index = 4;
                 }
-                listp[index].className ='active';
-                listimg[index].className ='active';
-                listspan[index].className ='active-dot';
+                active()
             }
         }
-
-
-
     </script>
 </body>
 </html>
