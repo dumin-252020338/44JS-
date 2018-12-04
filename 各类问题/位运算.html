@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>44js</title>
+    <style>
+    
+    </style>
+</head>
+<body>
+    <div><div>
+</body>
+<script>
+    console.time("控制台计时器一");　　
+    for(let v=0; v<5; v++){
+        let x = v*3
+        let y = v*5
+    console.log(x,y)
+    // console.time(x)
+    }
+    console.timeEnd("控制台计时器一");
+
+    console.time("控制台计时器二");　　
+    for(let i=0; i<5; i++){
+        let a = (i<<1) + i //用来将i的各二进制位全部左移1位，右补0
+        let b = (i<<2) + i //用来将i的各二进制位全部左移2位，右补0
+    console.log(a, b)
+    }
+    console.timeEnd("控制台计时器二");
+
+    let c = 4 //二进制为 100
+    c>>1  //输出2，二进制位10 //用来将i的各二进制位全部右移1位，右补0
+    c>>2  //输出1，二进制位1  //用来将i的各二进制位全部右移2位，右补0
+
+    console.log(2^3) //按位与或，对应位置数字相同为0，否则为1
+    console.log(2&3) //按位与，  对应位置数字都为1，则为1，否则为0
+    console.log(2|3) //按位或，  对应位置数字只要有1，则为1，否则为0
+</script>
+</html>
