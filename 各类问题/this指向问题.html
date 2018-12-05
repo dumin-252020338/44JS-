@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>44js</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div>
+    <div>
+</body>
+<script>
+    //this指向问题 
+    //https://mp.weixin.qq.com/s?__biz=MzA3MzA5MDY2NA==&mid=2247484340&idx=1&sn=e5711cf3977ed6997b2923445136c709&chksm=9f1510b3a86299a5c9c703d9f8f5410993c2bc9da0ce87193999adb9015d7bb20cacc0cb0f48&mpshare=1&scene=23&srcid=1204r4yaShkhG7v9SV6AvLU8#rd
+    function Person(name, age, sex, height  ) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.height = height;
+        console.log(this);
+    }
+    let obj = {
+        // name: '上海',
+        age: 18,
+        sex: function(s){
+            if(s){return "男"}else{return "女"}
+        }
+    };
+    let obj2 = {
+        age:19,
+        name: "努力",
+        sex: function(s){
+            if(s){return "男"}else{return "女"}
+        }
+    }
+    let obj3 = {
+        sex: function(s){
+            if(s){return "男"}else{return "女"}
+        },
+        age:20,
+        name: "意愿",
+    }
+    Person.call(obj, 'mm', 10, obj.sex(0), 180);
+    // Person.call(obj2, 'nx', 123, obj2.sex(1));
+    // obj，{name: "mm", age: 10}
+    Person.apply(obj2, ['my', 11, obj2.sex(1), 180]);
+    // obj，{name: "my", age: 11}
+    var p1 = Person.bind(obj3, 'mx', 12)
+    var p2 = new p1();
+    // Person {name: "mx", age: 12}
+
+    var name = "hh";
+    var obj4 = {
+        name : "kk",
+        func1: function() {
+            console.log(this.name)  
+        },
+        func2: function() {
+            setTimeout( ()=> {
+                this.func1()
+            }, 1000);
+        }
+    };
+    obj4.func2();//kk
+
+
+</script>
+
+</html>
